@@ -1,6 +1,7 @@
 package com.example.springboot_service_demo.controllers
 
 import com.example.springboot_service_demo.producers.PingProducer
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -13,4 +14,7 @@ class PingController(private val pingProducer: PingProducer) {
     fun sendPing(@PathVariable pingMessage: String){
         this.pingProducer.sendMessage(pingMessage)
     }
+
+    @GetMapping
+    fun getPing() = "PONG"
 }
