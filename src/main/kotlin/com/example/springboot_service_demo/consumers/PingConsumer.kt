@@ -17,7 +17,8 @@ class PingConsumer {
         topicPartitions = [TopicPartition(
             topic = "ping-topic",
             partitionOffsets = [PartitionOffset(partition = "0", initialOffset = "0")]
-        )]
+        )],
+        autoStartup = "\${kafka-integration.enabled:true}"
     )
     fun consume(message: String) {
         this.logger.info("SUCCESS: Consumed ping message $message")

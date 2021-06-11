@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("pings")
 class PingController(private val pingProducer: PingProducer) {
     @PostMapping("/{pingMessage}")
-    fun sendPing(@PathVariable pingMessage: String){
+    fun sendPing(@PathVariable pingMessage: String) {
         this.pingProducer.sendMessage(pingMessage)
     }
 
