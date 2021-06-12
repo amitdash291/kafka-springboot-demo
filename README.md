@@ -1,4 +1,4 @@
-# Kafka SpringBoot Demo
+# Kafka Spring Boot Demo
 This is a demo web service using Spring Boot Kafka SDK to produce and consume events.
 It includes basic Docker compose which spins up Zookeeper + Kafka + Kafdrop along with the Spring Boot service.
 
