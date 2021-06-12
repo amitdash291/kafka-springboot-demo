@@ -9,7 +9,7 @@ It includes basic Docker compose which spins up Zookeeper + Kafka + Kafdrop alon
 1. `./gradlew clean build`
 2. `docker-compose -p kafka-springboot-demo up`
 
-## Setup Command Line Producer / Consumer
+## Setup Kafka CLI Producer / Consumer
 1. `kafka-console-producer --broker-list localhost:9092 --topic ping-topic`
 2. `kafka-console-consumer --bootstrap-server localhost:9092 --topic ping-topic --from-beginning --consumer-property group.id=consumer-group-1`
 
