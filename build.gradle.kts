@@ -38,6 +38,10 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
 	testImplementation("org.springframework.kafka:spring-kafka-test")
+	testImplementation("io.mockk:mockk:+")
+	testImplementation("io.kotest:kotest-runner-junit5:+")
+	testImplementation("io.kotest:kotest-assertions-core:+")
+	testImplementation("io.kotest:kotest-property:+")
 }
 
 tasks.withType<KotlinCompile> {
