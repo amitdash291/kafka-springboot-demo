@@ -1,0 +1,5 @@
+spring:
+  kafka:
+    bootstrap-servers: ${KAFKA_BROKER_URL}
+kafka-integration:
+  enabled: true
