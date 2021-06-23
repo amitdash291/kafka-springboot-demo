@@ -6,6 +6,7 @@ plugins {
 	id("org.asciidoctor.convert") version "1.5.8"
 	kotlin("jvm") version "1.5.10"
 	kotlin("plugin.spring") version "1.5.10"
+	kotlin("plugin.serialization") version "1.5.10"
 }
 
 group = "com.example"
@@ -33,6 +34,8 @@ dependencies {
 	implementation("org.springframework.kafka:spring-kafka")
 	implementation("org.springdoc:springdoc-openapi-kotlin:+")
 	implementation("org.springdoc:springdoc-openapi-ui:+")
+	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:+")
+	implementation("org.jetbrains.kotlinx:kotlinx-datetime:+")
 	runtimeOnly("com.h2database:h2")
 	runtimeOnly("org.postgresql:postgresql")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")

@@ -1,6 +1,6 @@
 package com.example.springboot_service_demo.producers
 
-import com.example.springboot_service_demo.configurations.KafkaIntegration
+import com.example.springboot_service_demo.configurations.KafkaIntegrationConfig
 import com.example.springboot_service_demo.exceptions.KafkaIntegrationDisabledException
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
@@ -21,14 +21,14 @@ class PingProducerTest : DescribeSpec({
 
         it("should send a message when config is enabled") {
             val expectedMessage = "ping"
-            val pingProducer = PingProducer(mockKafkaTemplate, KafkaIntegration(enabled = true))
+            val pingProducer = PingProducer(mockKafkaTemplate, KafkaIntegrationConfig(enabled = true))
             pingProducer.sendMessage(expectedMessage)
             verify { mockKafkaTemplate.send("ping-topic", expectedMessage) }
         }
 
         it("should NOT send a message when config is disabled") {
             val ex = shouldThrow<KafkaIntegrationDisabledException> {
-                val pingProducer = PingProducer(mockKafkaTemplate, KafkaIntegration(enabled = false))
+                val pingProducer = PingProducer(mockKafkaTemplate, KafkaIntegrationConfig(enabled = false))
                 pingProducer.sendMessage("ping")
             }
             ex.message shouldBe null
@@ -42,7 +42,7 @@ class PingProducerFreeSpecTest : FreeSpec({
         "when config is enabled" - {
             "should send a message" {
                 val expectedMessage = "ping"
-                val pingProducer = PingProducer(mockKafkaTemplate, KafkaIntegration(enabled = true))
+                val pingProducer = PingProducer(mockKafkaTemplate, KafkaIntegrationConfig(enabled = true))
                 pingProducer.sendMessage(expectedMessage)
                 verify { mockKafkaTemplate.send("ping-topic", expectedMessage) }
             }
@@ -54,7 +54,7 @@ class PingProducerWordSpecTest : WordSpec({
     "PingProducer" When {
         val mockKafkaTemplate = mockk<KafkaTemplate<String, String>>(relaxed = true)
         "config is enabled" Should {
-            val pingProducer = PingProducer(mockKafkaTemplate, KafkaIntegration(enabled = true))
+            val pingProducer = PingProducer(mockKafkaTemplate, KafkaIntegrationConfig(enabled = true))
             "send a message" {
                 val expectedMessage = "ping"
                 pingProducer.sendMessage(expectedMessage)
@@ -68,7 +68,7 @@ class PingProducerBehaviorSpecTest : BehaviorSpec({
     Given("PingProducer") {
         val mockKafkaTemplate = mockk<KafkaTemplate<String, String>>(relaxed = true)
         When("config is enabled") {
-            val pingProducer = PingProducer(mockKafkaTemplate, KafkaIntegration(enabled = true))
+            val pingProducer = PingProducer(mockKafkaTemplate, KafkaIntegrationConfig(enabled = true))
             Then("sends a message") {
                 val expectedMessage = "ping"
                 pingProducer.sendMessage(expectedMessage)
@@ -85,7 +85,7 @@ class PingProducerExpectSpecTest : ExpectSpec({
 
         expect("should send a message when config is enabled") {
             val expectedMessage = "ping"
-            val pingProducer = PingProducer(mockKafkaTemplate, KafkaIntegration(enabled = true))
+            val pingProducer = PingProducer(mockKafkaTemplate, KafkaIntegrationConfig(enabled = true))
             pingProducer.sendMessage(expectedMessage)
             verify { mockKafkaTemplate.send("ping-topic", expectedMessage) }
         }
@@ -98,7 +98,7 @@ class PingProducerFunSpecTest : FunSpec({
 
         test("should send a message when config is enabled") {
             val expectedMessage = "ping"
-            val pingProducer = PingProducer(mockKafkaTemplate, KafkaIntegration(enabled = true))
+            val pingProducer = PingProducer(mockKafkaTemplate, KafkaIntegrationConfig(enabled = true))
             pingProducer.sendMessage(expectedMessage)
             verify { mockKafkaTemplate.send("ping-topic", expectedMessage) }
         }
@@ -111,7 +111,7 @@ class PingProducerShouldSpecTest : ShouldSpec({
 
         should("should send a message when config is enabled") {
             val expectedMessage = "ping"
-            val pingProducer = PingProducer(mockKafkaTemplate, KafkaIntegration(enabled = true))
+            val pingProducer = PingProducer(mockKafkaTemplate, KafkaIntegrationConfig(enabled = true))
             pingProducer.sendMessage(expectedMessage)
             verify { mockKafkaTemplate.send("ping-topic", expectedMessage) }
         }
